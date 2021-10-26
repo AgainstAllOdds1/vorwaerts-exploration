@@ -1,9 +1,10 @@
+import lxml
 from lxml import etree
 from pathlib import Path
 from PIL import Image
 import os
 
-tree = etree.parse('data.xml')
+tree = etree.parse('data2.xml')
 root = tree.getroot()
 NS = '{http://www.loc.gov/standards/alto/ns-v2#}'
 
@@ -67,7 +68,7 @@ def extract_text(xml_node, NS):
 def crop_image(im, anzeige):
     """Gets coordinates"""
     cropped = im.crop(anzeige['coords'])
-    cropped.save(f"out/{anzeige['id']}-{anzeige['type']}.jpg")
+    cropped.save(f"out2/{anzeige['id']}-{anzeige['type']}.jpg")
 
 if __name__ == '__main__':
     # Preliminaries
@@ -80,7 +81,7 @@ if __name__ == '__main__':
         os.mkdir(dirname)
 
     # hardcode image file
-    im = Image.open('scan.jpg')
+    im = Image.open('scan2.jpg')
 
     # Extract all textblock images
     textblocks = tree.findall(f'.//{NS}TextBlock')
